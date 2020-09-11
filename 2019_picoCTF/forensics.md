@@ -1,4 +1,5 @@
 # Forensics
+10/?
 - Glory of the Garden, 50 Points
 - unzip, 50 Points
 - So Meta, 150 Points
@@ -11,28 +12,22 @@
 - shark on wire 2, 300 Points
 
 ## Glory of the Garden
-### Description
 > This garden contains more than it seems. You can also find the file in /problems/glory-of-the-garden_6_0d6d3ea97757b84c7a51a38daa7dca8d on the shell server.
 
-### Solution
 Hint asks us "What is a hex editor?" So we open it in a [hex editor](https://hexed.it/) and find the flag at the bottom of the file.  
 Flag: `picoCTF{more_than_m33ts_the_3y3f20F5be9}`
 
 
 ## unzip
-### Description
 > Can you unzip this file and get the flag?
 
-### Solution
 Unzip the file. Image inside has the flag.
 Flag: `picoCTF{unz1pp1ng_1s_3a5y}`.
 
 
 ## So Meta
-### Description
 > Find the flag in this picture. You can also find the file in /problems/so-meta_3_6dc950904c3ee41f324ae8d9f142f2b8.
 
-### Solution
 We can use ExifTool on the shell to look at the metadata.
 ```
 $ exiftool pico_img.png
@@ -45,10 +40,8 @@ Flag: `picoCTF{s0_m3ta_43f253bb}`
 
 
 ## What Lies Within
-### Description
 > Theres something in the building. Can you retrieve the flag?
 
-### Solution
 Looking at the metadata using [exiftool](https://www.metadata2go.com/) gives us what looks like hex...
 ```
 Raw Header:
@@ -58,18 +51,14 @@ uhh hex gives us some weird things, so I searched up "online image decoder" whic
 Flag: `picoCTF{h1d1ng_1n_th3_b1t5}`
 
 ## Extensions
-### Description
 > This is a really weird text file TXT? Can you find the flag?
 
-### Solution
 Description text suggests that the file extension may have been changed. Changing it to a .png file gives us an image with the flag.  
 Flag: `picoCTF{now_you_know_about_extensions}`
 
 ## shark on wire 1
-### Description
 > We found this packet capture. Recover the flag. You can also find the file in /problems/shark-on-wire-1_0_13d709ec13952807e477ba1b5404e620.
 
-### Solution
 Sharks on a wire... wireshark. Hint asks us "What are streams?" With Wireshark, you're able to look at TCP and UDP streams. Looked through TCP, didn't find anything. Found some malformed packets on the 5th UDP stream that had "pico" on it, but this just lead to "picopicopicopico."
 Follow on a packet from the 6th stream
 Flag: `picoCTF{StaT31355_636f6e6e}`  
@@ -77,9 +66,8 @@ Checking the 7th stream gives us: picoCTF{N0t_a_fLag}
 
 
 ## WhitePages
-### Description
 > I stopped using YellowPages and moved onto WhitePages... but the page they gave me is all blank!
-### Solution
+
 Since we can highlight things, we know that the text is entirely composed of whitespace characters. There didn't seem to be a converter online (because who would make one), but doing a CTRL+F shows that there's spaces in the file.
 ```
 for (int i = 0; i < plaintext.length(); i++){
@@ -99,10 +87,9 @@ Flag: `picoCTF{not_all_spaces_are_created_equal_dd5c2e2f77f89f3051c82bfee7d996ef
 
 
 ## c0rrupt
-### Description
 > We found this file. Recover the flag. You can also find the file in /problems/c0rrupt_0_1fcad1344c25a122a00721e4af86de13.
 > Hint: Try fixing the file header
-### Solution
+
 Using EXIFTOOl, the header is 
 ```
 89 65 4E 34 0D 0A B0 AA 00 00 00 0D 43 22 44 52 00 00 06 6A 00 00 04 47 08 02 00 00 00 7C 8B AB 78 00 00 00 01 73 52 47 42 00 AE CE 1C E9 00 00 00 04 67 41 4D 41 00 00 B1 8F 0B FC 61 05 00 00
@@ -127,10 +114,8 @@ AB 44 45 54 became
 Flag: `picoCTF{c0rrupt10n_1847995}`
 
 ## like1000
-### Description
 > This .tar file got tarred alot. Also available at /problems/like1000_0_369bbdba2af17750ddf10cc415672f1c.
 
-### Solution
 uhh scripting
 ```
 import os
@@ -145,18 +130,12 @@ This outputs 1.tar, filler.txt, and flag.png.
 Flag: `picoCTF{l0t5_0f_TAR5}`
 
 ## m00nwalk
-### Description
 > Decode this message from the moon. You can also find the file in /problems/m00nwalk_5_72c1b4e13cc7ddd43d7fb3b0ae86afef.
-
-### Solution
-
 
 
 ## shark on wire 2
-### Description
 > We found this packet capture. Recover the flag that was pilfered from the network. You can also find the file in /problems/shark-on-wire-2_0_3e92bfbdb2f6d0e25b8d019453fdbf07.
 
-### Solution
 Looking through the UDP streams again, we come across weird headers that contain `start` and `end`. Looking at just the ones from port 22, we take the source ports and get
 ```
 5000 5112 5105 5099 5111 5099 5111 5067 5084 5070 5123 5112 5049 5076 5076 5102 5051 5114 5051 5100 5095 5100 5097 5116 5097 5095 5118 5049 5097 5095 5115 5116 5051 5103 5048 5125 5000
