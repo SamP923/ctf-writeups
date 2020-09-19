@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # [√-1 + 1] CTF server September 2020 Round
 - Sanity Check
 - Robots
@@ -12,14 +13,34 @@
 - [NOT SOLVED] Quick Maths - 100
 - zhiepx
 - Infinity Library
+=======
+# [√-1 + 1] CTF server problems 
+September 2020 Round
+- Sanity Check
+- Robots
+- [NOT SOLVED] LONGGGGG CRYPTOOOOO (not available)
+- [NOT SOLVED] Linux Skillz (not available)
+- [NOT SOLVED] bof (not available)
+- [NOT SOLVED] LazyDB (web)
+- Hexcelent Moves
+- MD5ed
+- [NOT SOLVED] Biblio (OSINT)
+- Hashed Potatoes
+- [NOT SOLVED] Quick Maths (programming/pwntools)
+- zhiepx
+- [NOT SOLVED] Infinity Library (OSINT)
+>>>>>>> d3286bc6cd99e1ef3e6f5b578fdac834d84ea22c
 - Steg 1
 - amy
 - SHA256ed
 - Discord Flag
 - Keywords Ugh!
 - Random XOR
+<<<<<<< HEAD
 - e
 - My Website!
+=======
+>>>>>>> d3286bc6cd99e1ef3e6f5b578fdac834d84ea22c
 
 
 ## Hashed Potatoes
@@ -43,6 +64,7 @@ for j in range(33, 127):
 ```
 Flag: `flag{4}`
 
+<<<<<<< HEAD
 ## Infinity Library
 > I lost my flag in an infinite library... Can you find it for me? I think I might have left it in wall 4, in shelf 5, in volume 11... 
 > Hint: I think I left the flag on page 353...
@@ -55,6 +77,8 @@ eplace the commas with underscores.
 Flag: `flag{library_of_babel}                                           
                                      
 
+=======
+>>>>>>> d3286bc6cd99e1ef3e6f5b578fdac834d84ea22c
 ## Random XOR
 > My crypto can't be cracked. I used a RNG to generate the key.
 > 91 79 52 35 45 95 39 95 102 0 83 123 98 72 55 57 65 59 50 54 37 97 10 77
@@ -90,6 +114,7 @@ print(flag)
 ```
 
 Flag: `flag{r4nd0m_1snt_s3cur3}`
+<<<<<<< HEAD
 
 
 ## e
@@ -115,3 +140,5 @@ ciphertext = plaintext ^ e mod n = plaintext ^ e, if plaintext ^ e < n
 >>> print(long_to_bytes(pt).decode())
 ```
 Flag: `flag{e_sh0u1d_n3v3r_b3_th1s_sm0l}`
+=======
+>>>>>>> d3286bc6cd99e1ef3e6f5b578fdac834d84ea22c

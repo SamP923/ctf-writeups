@@ -15,14 +15,14 @@
 ## vault-door-training
 > Your mission is to enter Dr. Evil's laboratory and retrieve the blueprints for his Doomsday Project. The laboratory is protected by a series of locked vault doors. Each door is controlled by a computer and requires a password to open. Unfortunately, our undercover agents have not been able to obtain the secret passwords for the vault doors, but one of our junior agents obtained the source code for each vault's computer! You will need to read the source code for each level to figure out what the password is for that vault door. As a warmup, we have created a replica vault in our training facility. The source code for the training vault is here: VaultDoorTraining.java
 
-The checkPassword function contains the flag.  
+The checkPassword function contains the flag.
 Flag: `picoCTF{w4rm1ng_Up_w1tH_jAv4_3b500738c12}`
 
 
 ## vault-door-1
 >This vault uses some complicated arrays! I hope you can make sense of it, special agent. The source code for this vault is here: VaultDoor1.java
 
-I descrambled this by hand by putting the character checks in the right sequence :(  
+I descrambled this by hand by putting the character checks in the right sequence :(
 Flag: `picoCTF{d35cr4mbl3_tH3_cH4r4cT3r5_8b748e}`
 
 
@@ -181,7 +181,7 @@ Flag:`picoCTF{n0t_mUcH_h4rD3r_tH4n_x0r_aedeced}`
 ## vault-door-7
 > This vault uses bit shifts to convert a password string into an array of integers. Hurry, agent, we are running out of time to stop Dr. Evil's nefarious plans! The source code for this vault is here: VaultDoor7.java
 
-Can directly convert decimal values to hexadecimal, then to ASCII. Trying to convert decimal values to binary then to hex was awkward  
+Can directly convert decimal values to hexadecimal, then to ASCII. Trying to convert decimal values to binary then to hex was awkward
 Flag:`picoCTF{A_b1t_0f_b1t_sh1fTiNg_97cb1f367b}`
 
 ## vault-door-8

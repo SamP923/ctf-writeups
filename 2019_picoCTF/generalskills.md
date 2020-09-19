@@ -18,11 +18,6 @@
 - mus1c, 300 Points
 - 1_wanna_b3_a_r0ck5tar, 350 Points
 
-## First Grep: Part II
-
-## plumbing
-
-## whats-the-difference 
 
 ## where-is-the-file
 > I've used a super secret mind trick to hide this file. Maybe something lies in /problems/where-is-the-file_2_f1aa319cafd4b55ee4a60c1ba65255e2.
@@ -63,7 +58,7 @@ We can see that it calculates the total cost of flags and stores it as an intege
 2147483648/900 = 2386092.942 
 2386093 is our minimum overflow number
 ```
-Enter the value when asked how many knockoff flags we want, get flag.  
+Enter the value when asked how many knockoff flags we want, get flag.
 Flag: `picoCTF{m0n3y_bag5_34c9a5f7}`
 
 ## mus1c
@@ -86,7 +81,7 @@ Using rockstar's [online compiler](https://codewithrockstar.com/online), we can 
 51
 114
 ```
-Three numbers usually means ASCII, so we convert the decimal numbers to ASCII and get our flag.
+Three letters usually means ASCII, so we convert the decimal numbers to ASCII and get our flag.
 
 Flag: `picoCTF{rrrocknrn0113r}`
 
