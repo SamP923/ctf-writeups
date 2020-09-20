@@ -1,47 +1,27 @@
-<<<<<<< HEAD
-# [√-1 + 1] CTF server September 2020 Round
-- Sanity Check
-- Robots
-- [NOT SOLVED] LONGGGGG CRYPTOOOOO (not available) - 250
-- [NOT SOLVED] Linux Skillz (not available) - 50
-- [NOT SOLVED] bof (not available) - 50
-- [NOT SOLVED] LazyDB - 200
-- Hexcelent Moves
-- MD5ed
-- Biblio
-- Hashed Potatoes
-- [NOT SOLVED] Quick Maths - 100
-- zhiepx
-- Infinity Library
-=======
 # [√-1 + 1] CTF server problems 
 September 2020 Round
 - Sanity Check
 - Robots
-- [NOT SOLVED] LONGGGGG CRYPTOOOOO (not available)
+- [NOT SOLVED] LONGGGGG CRYPTOOOOO (not available) (extra)
 - [NOT SOLVED] Linux Skillz (not available)
 - [NOT SOLVED] bof (not available)
-- [NOT SOLVED] LazyDB (web)
+- [NOT SOLVED] LazyDB
 - Hexcelent Moves
 - MD5ed
-- [NOT SOLVED] Biblio (OSINT)
+- Biblio
 - Hashed Potatoes
-- [NOT SOLVED] Quick Maths (programming/pwntools)
+- [NOT SOLVED] Quick Maths 
 - zhiepx
-- [NOT SOLVED] Infinity Library (OSINT)
->>>>>>> d3286bc6cd99e1ef3e6f5b578fdac834d84ea22c
+- Infinity Library
 - Steg 1
 - amy
 - SHA256ed
 - Discord Flag
-- Keywords Ugh!
+- Keywords Ugh! (extra)
 - Random XOR
-<<<<<<< HEAD
 - e
 - My Website!
-=======
->>>>>>> d3286bc6cd99e1ef3e6f5b578fdac834d84ea22c
-
+- SUPER SECURE ENCRYPTER
 
 ## Hashed Potatoes
 > I hashed my password with MD5 100 times! It's so secure, I only needed to make my password 1 character long. The flag is flag{<the password you get>}
@@ -64,7 +44,7 @@ for j in range(33, 127):
 ```
 Flag: `flag{4}`
 
-<<<<<<< HEAD
+
 ## Infinity Library
 > I lost my flag in an infinite library... Can you find it for me? I think I might have left it in wall 4, in shelf 5, in volume 11... 
 > Hint: I think I left the flag on page 353...
@@ -74,11 +54,9 @@ Using the address given in babel.txt, we access wall 4, shelf 5, volume 11, page
 > the flag is flag.library,of,babel. replace the periods with curly brackets and r
 eplace the commas with underscores.  
 
-Flag: `flag{library_of_babel}                                           
-                                     
+Flag: `flag{library_of_babel}
 
-=======
->>>>>>> d3286bc6cd99e1ef3e6f5b578fdac834d84ea22c
+
 ## Random XOR
 > My crypto can't be cracked. I used a RNG to generate the key.
 > 91 79 52 35 45 95 39 95 102 0 83 123 98 72 55 57 65 59 50 54 37 97 10 77
@@ -114,7 +92,6 @@ print(flag)
 ```
 
 Flag: `flag{r4nd0m_1snt_s3cur3}`
-<<<<<<< HEAD
 
 
 ## e
@@ -140,5 +117,24 @@ ciphertext = plaintext ^ e mod n = plaintext ^ e, if plaintext ^ e < n
 >>> print(long_to_bytes(pt).decode())
 ```
 Flag: `flag{e_sh0u1d_n3v3r_b3_th1s_sm0l}`
-=======
->>>>>>> d3286bc6cd99e1ef3e6f5b578fdac834d84ea22c
+
+
+## SUPER SECURE ENCRYPTER
+> I just made a SUPER SECURE ENCRYPTER. It takes your text and encrypts it BEYOND recovery. At least I think so...
+> zCR\{fzR*RzkRf>RzkRkfzkRRkzkRk>zkzW*kfWCz}
+
+The encryption algorithm is hard to decrypt because multiple plaintext letters can be mapped to the ciphertext letter. We use the encryption algorithm to make a dictionary. We're given the hint that the flag is all uppercase, so we get
+> {ABCDEFGHIJKLMNOPQRSTUVWXYZ}
+Testing numbers gives us an out-of-bounds, so we know we're not looking at leet text. We print our dictionary for a visual. 
+
+I realized later that we probably should have delimiters between the words. We usually use underscores, so we add that to our alphabet. One mapping changes from 
+`k:AP to k:AP_`
+
+Looking at the String, we can guess that most of the `k`'s are going to map to underscores, since flags are multiple words. It's then a matter of looking for patterns and testing combinations. You can find my process in supersecret_mapping.txt  
+
+The first combinations I saw were `WAIT` `ARRAY` and `DONE`. This particular problem writer has done a flag with similar wording
+> FLAG{THIS_IS_IMPOSSIBLE_RIGHT_WAIT_WHAT_ARE_YOU_DOING...}
+
+Another person had tipped me off that the first word was `SECURE`. Knowing that there was a delimiter was key, because without it, you could get something like `SECUREPRIV` and get stuck. Filling in the rest, we get our flag.
+
+Flag: `flag{SECURE_RIGHT_WAIT_WHAT_HAVE_YOU_DONE}`
