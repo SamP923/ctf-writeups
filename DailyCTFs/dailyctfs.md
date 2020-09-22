@@ -22,6 +22,14 @@ September 2020 Round
 - e
 - My Website!
 - SUPER SECURE ENCRYPTER
+- Not So Easy Binary Decode
+- Whitened
+- Hello World!
+- 1337 secret challenge
+
+## Lazy DB
+
+
 
 ## Hashed Potatoes
 > I hashed my password with MD5 100 times! It's so secure, I only needed to make my password 1 character long. The flag is flag{<the password you get>}
@@ -123,18 +131,54 @@ Flag: `flag{e_sh0u1d_n3v3r_b3_th1s_sm0l}`
 > I just made a SUPER SECURE ENCRYPTER. It takes your text and encrypts it BEYOND recovery. At least I think so...
 > zCR\{fzR*RzkRf>RzkRkfzkRRkzkRk>zkzW*kfWCz}
 
-The encryption algorithm is hard to decrypt because multiple plaintext letters can be mapped to the ciphertext letter. We use the encryption algorithm to make a dictionary. We're given the hint that the flag is all uppercase, so we get
+The encryption algorithm is hard to decrypt because multiple plaintext letters can be mapped to one ciphertext letter. We use the encryption script to make a dictionary. We're given the hint that the flag is all uppercase, so our alphabet consists of the following characters
 > {ABCDEFGHIJKLMNOPQRSTUVWXYZ}
-Testing numbers gives us an out-of-bounds, so we know we're not looking at leet text. We print our dictionary for a visual. 
+Testing numbers gives us an out-of-bounds, so we know we're not looking at leet text. Here's the original dictionary
+```
+{:{
+f:DISX
+z:EJTY
+R:CHRW
+*:FU
+k:AP
+>:GV
+W:O
+C:N
+}:}
+```
 
-I realized later that we probably should have delimiters between the words. We usually use underscores, so we add that to our alphabet. One mapping changes from 
+After trying to come up with potential words, I realized that it might have some sort of delimiter to separate them. CTF flags usually use underscores, so we add that to our alphabet and run it through the encryption script. One mapping changes from 
 `k:AP to k:AP_`
 
-Looking at the String, we can guess that most of the `k`'s are going to map to underscores, since flags are multiple words. It's then a matter of looking for patterns and testing combinations. You can find my process in supersecret_mapping.txt  
+Looking at the flag to character mapping, we can guess that most of the `k`'s are going to map to underscores based on the spacing between subsequent `k`s. It's then a matter of looking for patterns and testing combinations (see supersecret_mapping.txt).
 
 The first combinations I saw were `WAIT` `ARRAY` and `DONE`. This particular problem writer has done a flag with similar wording
 > FLAG{THIS_IS_IMPOSSIBLE_RIGHT_WAIT_WHAT_ARE_YOU_DOING...}
 
-Another person had tipped me off that the first word was `SECURE`. Knowing that there was a delimiter was key, because without it, you could get something like `SECUREPRIV` and get stuck. Filling in the rest, we get our flag.
+Credit to Hoi, who had tipped me off that the first word was `SECURE`. Knowing that there was a delimiter was key, because without it, you could get something like `SECUREPRIV` and get stuck. Filling in the words `SECURE`, `WAIT`, and `DONE`, we can guess the rest to get our flag.
 
 Flag: `flag{SECURE_RIGHT_WAIT_WHAT_HAVE_YOU_DONE}`
+
+
+## Not So Easy Binary Decode
+> Little Timmy always admired hackers so he made a program to encrypt his lucky NUMBER using binary.
+> However, he forgot to make the decryption program and now he can't decode his lucky NUMBER.
+> Maybe you can help him?
+> You should submit flag{decrypted_string} as the flag
+
+We're heavily hinted that the flag is a number. Numbers in binary are only 6 bits long, so we can either pad the front with two zeros or just take substrings in intervals of 6. 
+
+Flag: `flag{293379041573118045942178062455891115683939605429063126250374632854}`  
+
+## Hello World!
+> I​​​​‏​‍​​​​‏‌‎​​​​‎‏‍​​​​‏​‎​​​​‏‏‎​​​​‏‎​​​​​‏‎‍​​​​‏‍‍​​​​‏​‌​​​​‏‍‏​​​​‎‏​​​​​‏‎​​​​​‍​‌​​​​‎‏‏​​​​‏‍‏​​​​‏​‌​​​​‏‎‌​​​​‎‏​​​​​‏​‍​​​​‏‌‎​​​​‍​‍​​​​‏​‎​​​​‎‏​​​​​‏‎​​​​​‏‎‍​​​​‎‏‎​​​​‏‌‏​​​​‌‏‏​​​​‏‎‌​​​​‎‏​​​​​‏‎‌​​​​‏​‏​​​​‌‏‏​​​​‏‎​​​​​‎‏​​​​​‏​‍​​​​‌‏‎​​​​‏‍‏​​​​‎‏​​​​​‎‏‍​​​​‎‏​​​​​‏‎​​​​​‍​‌​​​​‎‏‏​​​​‏‍‏​​​​‍​‌​​​​‏‎‌​​​​‎‏​​​​​‍​‌​​​​‏‏​​​​​‏‎‌​​​​‏‍‏​​​​‍​‍​​​​‎‏​​​​​‎‏‏​​​​‏​‏​​​​‍​‍​​​​‏‌‎​​​​‏‌‎​​​​‍​‌​​​​‏‍​​​​​‏​‎​​​​‍​‌​​​‌​​​ forgot how to program, so I'll just type "Hello World". Much easier than making a program type it for me.
+
+If we take a look at the file in a hex editor, there's a ton of characters between "H" and "ello World". We can see a repeating pattern of E2 80 8x, x being BCDEF. In unicode, we can see that these actual map to spaces -- more specifically, (zero-width spaces)[https://www.utf8-chartable.de/unicode-utf8-table.pl?start=8192&number=128]. We can use an online decoder like [zwsp-steg](https://github.com/offdev/zwsp-steg-js) to get our flag.
+
+Credit to MatthewN for the tip.
+
+Flag: `flag{00pS_1_th0ught_th1s_w4s_4as1er}`
+
+Taking the challenge text, we try that too for the 1337 secret challenge. 
+
+Flag: `flag{super_s3cret_fl4g_subm1t_th1s_f0r_a_s3cr3t_3xtr4_ch4ll3ng3}`
