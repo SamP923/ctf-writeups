@@ -25,7 +25,10 @@ September 2020 Round
 - Not So Easy Binary Decode
 - Whitened
 - Hello World!
-- 1337 secret challenge
+- 1337 secret challenge (extra)
+- WASM
+- The online classroom.
+- The Flag Is In The Past
 
 ## Lazy DB
 
@@ -35,7 +38,7 @@ September 2020 Round
 > I hashed my password with MD5 100 times! It's so secure, I only needed to make my password 1 character long. The flag is flag{<the password you get>}
 > 10502fa81a010bfab50c6cad9745b7d8
 
-Scripting!
+Since it's only 1 character long, we can test each of the hashes for printable ASCII characters (range: [33, 127]).
 
 ```
 from hashlib import md5
@@ -82,7 +85,7 @@ for n in flag:
 print(ciphertext)
 ```
 
-Reversing!
+Numbers generated with a specified random seed will always result in the same "random" numbers on multiple executions. We can use this to reverse the cipher text.
 
 ```
 import random
@@ -133,6 +136,7 @@ Flag: `flag{e_sh0u1d_n3v3r_b3_th1s_sm0l}`
 
 The encryption algorithm is hard to decrypt because multiple plaintext letters can be mapped to one ciphertext letter. We use the encryption script to make a dictionary. We're given the hint that the flag is all uppercase, so our alphabet consists of the following characters
 > {ABCDEFGHIJKLMNOPQRSTUVWXYZ}
+
 Testing numbers gives us an out-of-bounds, so we know we're not looking at leet text. Here's the original dictionary
 ```
 {:{
@@ -166,14 +170,14 @@ Flag: `flag{SECURE_RIGHT_WAIT_WHAT_HAVE_YOU_DONE}`
 > Maybe you can help him?
 > You should submit flag{decrypted_string} as the flag
 
-We're heavily hinted that the flag is a number. Numbers in binary are only 6 bits long, so we can either pad the front with two zeros or just take substrings in intervals of 6. 
+We're heavily hinted that the flag is a number. Numbers in binary are only 6 bits long, so we can either pad the front of each 6-bit group with two zeros and put it in a decoder or just take substrings in intervals of 6. 
 
 Flag: `flag{293379041573118045942178062455891115683939605429063126250374632854}`  
 
 ## Hello World!
 > I​​​​‏​‍​​​​‏‌‎​​​​‎‏‍​​​​‏​‎​​​​‏‏‎​​​​‏‎​​​​​‏‎‍​​​​‏‍‍​​​​‏​‌​​​​‏‍‏​​​​‎‏​​​​​‏‎​​​​​‍​‌​​​​‎‏‏​​​​‏‍‏​​​​‏​‌​​​​‏‎‌​​​​‎‏​​​​​‏​‍​​​​‏‌‎​​​​‍​‍​​​​‏​‎​​​​‎‏​​​​​‏‎​​​​​‏‎‍​​​​‎‏‎​​​​‏‌‏​​​​‌‏‏​​​​‏‎‌​​​​‎‏​​​​​‏‎‌​​​​‏​‏​​​​‌‏‏​​​​‏‎​​​​​‎‏​​​​​‏​‍​​​​‌‏‎​​​​‏‍‏​​​​‎‏​​​​​‎‏‍​​​​‎‏​​​​​‏‎​​​​​‍​‌​​​​‎‏‏​​​​‏‍‏​​​​‍​‌​​​​‏‎‌​​​​‎‏​​​​​‍​‌​​​​‏‏​​​​​‏‎‌​​​​‏‍‏​​​​‍​‍​​​​‎‏​​​​​‎‏‏​​​​‏​‏​​​​‍​‍​​​​‏‌‎​​​​‏‌‎​​​​‍​‌​​​​‏‍​​​​​‏​‎​​​​‍​‌​​​‌​​​ forgot how to program, so I'll just type "Hello World". Much easier than making a program type it for me.
 
-If we take a look at the file in a hex editor, there's a ton of characters between "H" and "ello World". We can see a repeating pattern of E2 80 8x, x being BCDEF. In unicode, we can see that these actual map to spaces -- more specifically, (zero-width spaces)[https://www.utf8-chartable.de/unicode-utf8-table.pl?start=8192&number=128]. We can use an online decoder like [zwsp-steg](https://github.com/offdev/zwsp-steg-js) to get our flag.
+If we take a look at the file in a hex editor, there's a ton of characters between "H" and "ello World". We can see a repeating pattern of E2 80 8x, x being BCDEF. In unicode, we can see that these actual map to spaces -- more specifically, [zero-width spaces](https://www.utf8-chartable.de/unicode-utf8-table.pl?start=8192&number=128). We can use an online decoder like [zwsp-steg](https://github.com/offdev/zwsp-steg-js) to get our flag.
 
 Credit to MatthewN for the tip.
 
@@ -182,3 +186,27 @@ Flag: `flag{00pS_1_th0ught_th1s_w4s_4as1er}`
 Taking the challenge text, we try that too for the 1337 secret challenge. 
 
 Flag: `flag{super_s3cret_fl4g_subm1t_th1s_f0r_a_s3cr3t_3xtr4_ch4ll3ng3}`
+
+
+## WASM
+> Find my flag... It's hidden in memory!
+> https://digitalmortifiedactivecell.mendel3.repl.co/
+> Hints: https://stackoverflow.com/questions/51562325/webassembly-correct-way-to-get-a-string-from-a-parameter-with-memory-address
+> https://marcoselvatici.github.io/WASM_tutorial/
+
+This is the jankiest and definitely not intended way to solve, especially given the first hint. The following code checks through all values in WASM memory, sees if they are not 0, checks if the decimal corresponds to a printable ASCII character, then prints it. This is input to the Javacript console.
+
+```
+var i;
+for (i = 0; i < Module.HEAP8.byteLength; i++){
+    var val = getValue(i, "i8");
+    if ( val != 0 && val >= 33 && val <= 127) {
+        console.log(getValue(i, "i8"));
+    }
+}
+```
+
+Converting that decimal output to ASCII using RapidTables we get
+> msc'-&:6q/%r3.4tl6q3p%lq'l6t,<%sIlefÓheflagheresomewarebutIcan'trememberwhereIputit.Couldyousearchthroughmymemoryandfindit?-+0X0x(nuÒ)0123456789ABCDEF-0X+0X0X-0x+0x0xinfINFnanNAN.XgTsX!s!$!flag{w0nd3rou5-w0r1d-0f-wa5m}'-&:6q/%r3.4tl6q3p%lq'l6t,<./this.programP
+
+Flag: `flag{w0nd3rou5-w0r1d-0f-wa5m}`
