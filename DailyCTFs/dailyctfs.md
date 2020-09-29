@@ -3,9 +3,9 @@ September 2020 Round
 - Sanity Check
 - Robots
 - [NOT SOLVED] LONGGGGG CRYPTOOOOO (not available) (extra)
-- [NOT SOLVED] Linux Skillz (not available)
-- [NOT SOLVED] bof (not available)
-- [NOT SOLVED] LazyDB
+- Linux Skillz
+- bof
+- LazyDB
 - Hexcelent Moves
 - MD5ed
 - Biblio
@@ -29,9 +29,49 @@ September 2020 Round
 - WASM
 - The online classroom.
 - The Flag Is In The Past
+- MD5²
+- Braille
+- Whirlpool
+
+## bof 
+> What's a buffer? Hmmmmmm... Is my buffer too small?
+```
+#include <stdio.h>
+#include <string.h>
+
+int main(void)
+{
+  long code = 0;
+  char name[64];
+  
+  setbuf(stdout, NULL);
+  setbuf(stdin, NULL);
+  setbuf(stderr, NULL);
+
+  puts("\n\n\n\nMinecraftcito\nWhere you need to survive all day and all night\nCraft a diamond sword so you can fight\nPlace a torch in a cave to produce some light\nMinecraftcito\n");
+  puts("What song do you want me to sing next?\n");
+  
+  gets(name);
+  printf("Sorry, I don't know how to sing that...\n");
+  if(code != 0) {
+    system("cat flag.txt");
+     printf("\n\n\n");
+  }
+}
+
+```
+This is a simple buffer overflow. name is stored as a char array with length 64. The gets() method assigns user input to name without sanitizing the input to check if it's valid. This means that if we type in something that's longer than the length of 64, it will start overwriting previous lines. In this case, since the program checks if the value of `code` is not equal to 0, we only need to rewrite code. Putting in 65 `a`'s should be sufficient. 
+
+Flag: `flag{buff3r_0v3rfl0w_1s_d4ng3r0uS}`
+
 
 ## Lazy DB
+> Timmy really hates hackers so he created a honeypot!Can you teach this kid a lesson?
+> PS: He didn't even choose a good database provider so you will probably face some lag...
+I bruteforced this by hand. I mean, it was only 18 characters...
+This was a timing attack, meaning that the more correct the input is (checking from the front) the longer the server will take to respond. Since there's only ones and zeros and printable ASCII characters follow a similar 8 bit pattern, it wasn't too hard. I opened up the network panel in devtools to check for the first few, but eventually I just tested adding 1's and 0's.
 
+Flag: `flag{c001_71m1ng5}`
 
 
 ## Hashed Potatoes
