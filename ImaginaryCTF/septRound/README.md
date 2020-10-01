@@ -1,39 +1,51 @@
 # [√-1 + 1] CTF server problems 
-September 2020 Round
-33/33
-- Sanity Check
-- Robots
-- Linux Skillz
-- bof
-- LazyDB
-- Hexcelent Moves
-- MD5ed
-- Biblio
-- Hashed Potatoes
-- Quick Maths 
-- zhiepx
-- Infinity Library
-- Steg 1
-- amy
-- SHA256ed
-- Discord Flag
-- Keywords Ugh! (extra)
-- Random XOR
-- e
-- My Website!
-- SUPER SECURE ENCRYPTER
-- Not So Easy Binary Decode
-- Whitened
-- Hello World!
-- 1337 secret challenge (extra)
-- WASM
-- The online classroom.
-- The Flag Is In The Past
-- MD5²
-- Braille
-- Whirlpool
-- Substitute Teacher
-- runme
+September 2020 Round  
+
+Ranking: 2/42 with 3065 points (33/33 challenges solved).
+
+
+
+
+| Challenge               | Type | Points |
+|-------------------------|------|--------|
+| Sanity Check | Misc | 15 |
+| Robots | Web | 50 |
+| Linux Skillz | Misc | 50 |
+| [bof](bof/) | Pwn | 50 |
+| LazyDB | Web | 200 |
+| Hexcelent Moves | Crypto | 50 |
+| MD5ed | Crypto | 75 |
+| Biblio | OSINT | 75 |
+| Hashed Potatoes | Crypto | 125 |
+| [Quick Maths](quickmaths/) | Programming | 100 |
+| zhiepx | Forensics | 75 |
+| Infinity Library | OSINT | 75 |
+| Steg 1 | Forensics | 75 | 
+| amy | OSINT/Math | 75
+| SHA256ed | Crypto | 75 |
+| Discord Flag | Misc | 50 |
+| Keywords Ugh! (extra) | Crypto | 125 |
+| [Random XOR](randomXOR/) | Crypto | 150 |
+| e | Crypto | 125 |
+| My Website! | Web | 50 |
+| [SUPER SECURE ENCRYPTER](supersecret/) | Crypto/RE | 200 |
+| [Not So Easy Binary Decode](easybinarydecode/) | Crypto | 100 |
+| Whitened | Misc | 50 |
+| [Hello World!](helloworld/) | Forensics | 100 |
+| [1337 secret challenge (extra)](helloworld/) | Forensics | 25 | 
+| [WASM](wasm/) | Web | 200 |
+| The online classroom. | OSINT | 100 |
+| The Flag Is In The Past | OSINT | 100 |
+| MD5² | Crypto | 75 |
+| Braille | Crypto | 25 |
+| Whirlpool | Crypto | 75 |
+| Substitute Teacher | Crypto | 50 |
+| runme | Pwn | 200 |
+
+
+
+This README holds all of the writeups I completed. See individual folders for source and solve scripts.
+
 
 ## bof 
 > What's a buffer? Hmmmmmm... Is my buffer too small?
@@ -143,11 +155,12 @@ Using the address given in babel.txt, we access wall 4, shelf 5, volume 11, page
 > the flag is flag.library,of,babel. replace the periods with curly brackets and r
 eplace the commas with underscores.  
 
-Flag: `flag{library_of_babel}
+Flag: `flag{library_of_babel}`
 
 
 ## Random XOR
 > My crypto can't be cracked. I used a RNG to generate the key.
+
 > 91 79 52 35 45 95 39 95 102 0 83 123 98 72 55 57 65 59 50 54 37 97 10 77
 ```
 import random
@@ -195,6 +208,8 @@ This is RSA! Credit to <https://blog.kuhi.to/picoctf_2019_crypto_writeup> for th
 ```
 ciphertext = plaintext ^ e mod n = plaintext ^ e, if plaintext ^ e < n
 ```
+
+In Python,
 ```
 >>> import gmpy2
 >>> from Crypto.Util.number import long_to_bytes
@@ -268,8 +283,11 @@ Flag: `flag{super_s3cret_fl4g_subm1t_th1s_f0r_a_s3cr3t_3xtr4_ch4ll3ng3}`
 
 ## WASM
 > Find my flag... It's hidden in memory!
+
 > https://digitalmortifiedactivecell.mendel3.repl.co/
+
 > Hints: https://stackoverflow.com/questions/51562325/webassembly-correct-way-to-get-a-string-from-a-parameter-with-memory-address
+
 > https://marcoselvatici.github.io/WASM_tutorial/
 
 I don't think this was the intended way to solve, especially given the first hint, but it was easy to understand and execute. We're told to search through the memory, and the second hint references the `getValue` function, which can return values from memory.
@@ -294,6 +312,9 @@ Flag: `flag{w0nd3rou5-w0r1d-0f-wa5m}`
 
 ## runme
 > Run my program! Connect with nc imaginary.ml 10006.
+
+See the full and cleaner writeup in the [runme folder](runme/runme_writeup.pdf).
+
 
 Unlike the previous binary exploitation challenge, we're only given the binary. Sad. Upon testing the program with a bunch of garbage, we find that this is another buffer overflow.
 
@@ -345,7 +366,7 @@ undefined8 main(void)
 
 It's very clear now that we just need to overflow the buffer of local_38 in order to change the initialization of local_10. To do this, the offset was `40` and we add the hex value that `local_10` is being checked for. Anyway.
 
-testing:
+testing:  
 I had set up a flag.txt file that just read "opened flag.txt", which was used to confirm that the exploit worked. 
 ```
 $ chmod +x runme

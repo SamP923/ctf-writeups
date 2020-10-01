@@ -1,7 +1,10 @@
 ## WASM
 > Find my flag... It's hidden in memory!
+
 > https://digitalmortifiedactivecell.mendel3.repl.co/
+
 > Hints: https://stackoverflow.com/questions/51562325/webassembly-correct-way-to-get-a-string-from-a-parameter-with-memory-address
+
 > https://marcoselvatici.github.io/WASM_tutorial/
 
 I don't think this was the intended way to solve, especially given the first hint, but it was easy to understand and execute. We're told to search through the memory, and the second hint references the `getValue` function.

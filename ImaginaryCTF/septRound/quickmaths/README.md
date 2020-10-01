@@ -31,4 +31,9 @@ while stillInp:
 		stillInp = False
 ```
 
+Run the program
+```
+$ python3 solveqm.py
+```
+
 Flag: `flag{w0w_qu1ck_m4th5}`
