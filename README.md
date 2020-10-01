@@ -6,5 +6,6 @@ __2020__
 
 | Names                   | Solves |
 |-------------------------|--------|
-| [`picoCTF 2019`](2019_picoCTF/)| 53   |
-| [`[√-1 + 1] challenges`](DailyCTFs/) | 30   |
+| [`picoCTF 2019`](2019_picoCTF/)| 53/?   |
+| [`[√-1 + 1] September Round`](SqrtCTFs/) | 33/33   |
+| [`[√-1 + 1] October Round`](SqrtCTFs/) | 1/?   |

