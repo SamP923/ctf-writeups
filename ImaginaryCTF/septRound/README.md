@@ -12,21 +12,21 @@ Ranking: 2/42 with 3065 points (33/33 challenges solved).
 | Robots | Web | 50 |
 | Linux Skillz | Misc | 50 |
 | [bof](bof/) | Pwn | 50 |
-| LazyDB | Web | 200 |
+| [LazyDB](#lazy-db) | Web | 200 |
 | Hexcelent Moves | Crypto | 50 |
 | MD5ed | Crypto | 75 |
 | Biblio | OSINT | 75 |
-| Hashed Potatoes | Crypto | 125 |
+| [Hashed Potatoes](#hashed-potatoes) | Crypto | 125 |
 | [Quick Maths](quickmaths/) | Programming | 100 |
 | zhiepx | Forensics | 75 |
-| Infinity Library | OSINT | 75 |
+| [Infinity Library](#infinity-library) | OSINT | 75 |
 | Steg 1 | Forensics | 75 | 
 | amy | OSINT/Math | 75
 | SHA256ed | Crypto | 75 |
 | Discord Flag | Misc | 50 |
 | Keywords Ugh! (extra) | Crypto | 125 |
 | [Random XOR](randomXOR/) | Crypto | 150 |
-| e | Crypto | 125 |
+| [e](#e) | Crypto | 125 |
 | My Website! | Web | 50 |
 | [SUPER SECURE ENCRYPTER](supersecret/) | Crypto/RE | 200 |
 | [Not So Easy Binary Decode](easybinarydecode/) | Crypto | 100 |
@@ -40,7 +40,7 @@ Ranking: 2/42 with 3065 points (33/33 challenges solved).
 | Braille | Crypto | 25 |
 | Whirlpool | Crypto | 75 |
 | Substitute Teacher | Crypto | 50 |
-| runme | Pwn | 200 |
+| [runme](runme/) | Pwn | 200 |
 
 
 
@@ -82,6 +82,7 @@ Flag: `flag{buff3r_0v3rfl0w_1s_d4ng3r0uS}`
 ## Lazy DB
 > Timmy really hates hackers so he created a honeypot!Can you teach this kid a lesson?
 > PS: He didn't even choose a good database provider so you will probably face some lag...
+
 I bruteforced this by hand. I mean, it was only 18 characters...
 This was a timing attack, meaning that the more correct the input is (checking from the front) the longer the server will take to respond. Since there's only ones and zeros and printable ASCII characters follow a similar 8 bit pattern, it wasn't too hard. I opened up the network panel in devtools to check for the first few, but eventually I just tested adding 1's and 0's.
 
@@ -112,7 +113,7 @@ Flag: `flag{4}`
 
 ## Quick Maths
 > My teacher sent me some massive homework!
-> Can you solve it for me?
+Can you solve it for me?
 
 When connecting, we're given a string that looks something like 
 ```
@@ -283,12 +284,9 @@ Flag: `flag{super_s3cret_fl4g_subm1t_th1s_f0r_a_s3cr3t_3xtr4_ch4ll3ng3}`
 
 ## WASM
 > Find my flag... It's hidden in memory!
-
-> https://digitalmortifiedactivecell.mendel3.repl.co/
-
-> Hints: https://stackoverflow.com/questions/51562325/webassembly-correct-way-to-get-a-string-from-a-parameter-with-memory-address
-
-> https://marcoselvatici.github.io/WASM_tutorial/
+https://digitalmortifiedactivecell.mendel3.repl.co/
+Hints: https://stackoverflow.com/questions/51562325/webassembly-correct-way-to-get-a-string-from-a-parameter-with-memory-address
+https://marcoselvatici.github.io/WASM_tutorial/
 
 I don't think this was the intended way to solve, especially given the first hint, but it was easy to understand and execute. We're told to search through the memory, and the second hint references the `getValue` function, which can return values from memory.
 
