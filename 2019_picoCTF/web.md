@@ -5,6 +5,7 @@
 - logon, 100 Points
 - where are the robots, 100 Points
 - Client-side-again, 200 Points
+- picobrowser, 200 Points
 
 ## where are the robots
 > Can you find the robots? https://2019shell1.picoctf.com/problem/49824/ (link) or http://2019shell1.picoctf.com:49824
@@ -32,6 +33,9 @@ Flag: `picoCTF{not_this_again_055670}`
 ## Open-to-admins
 
 ## picobrowser
+In Devtools, we click the vertical three dots in the right hand corner and open the console drawer. Here, we can open network conditions and change our user agent to custom, then picobrowser.
+Flag: `picoCTF{p1c0_s3cr3t_ag3nt_6b1d92d7}`
+
 
 ## Java Script Kiddie
 
