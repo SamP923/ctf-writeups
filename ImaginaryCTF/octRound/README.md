@@ -5,7 +5,7 @@ October 2020 Round
 |-------------------------|------|--------|
 | Welcome to Round 3! | Misc | 15 |
 | Meta | Forensics | 100 |
-| Did you feel that wave? [NOT SOLVED] | Rev | 175 |
+| [Did you feel that wave?](didyoufeelthatwave/) | Misc | 175 |
 | [Save Trees!](savetrees/) | Rev | 80 |
 | [Colliders are the best Unity Components!](colliders/) | Rev | 60 |
 | Whitened 2.0 | Misc | 100 |
@@ -13,12 +13,11 @@ October 2020 Round
 | [Blinking Lights](#blinking-lights) | Crypto | 50 |
 | Optimization [NOT SOLVED] | Programming | 150 |
 | Out of Office... | OSINT | 100 |
+| [Is this art?](#is-this-art) | Forensics | 50 | 
+| [Fuzzy](#fuzzy) | Forensics | 100 |
+| [Just Add](justadd/) | Programming | 50 |
 
-little behind on the daily challenges but it's fin
-
-
-## Did you feel that wave?
-note: need to reverse the bytes of the file, then run through qsstv
+little behind on the daily challenges but it's fine
 
 
 ## Applebot
@@ -71,7 +70,25 @@ Flag: `ictf{S0_M4NY_APPl3$_7OO_MUCH_W0RK_$0_W3_H4CK}`
 
 
 ## Blinking Lights
+> My friend sent me a series of flashing lights... I think he was trying to tell me something... I've copied them down for you, can you help me decode it?
 
 Convert the emojis to binary. This can be done with a script or with an online text replacer ([for the lazy](http://www.unit-conversion.info/texttools/replace-text/)). Decode the binary.
 
 Flag: `flag{C@N_UND3R$7AND?}`
+
+
+## Is this art?
+If we play with filters on [Forensically](https://29a.ch/photo-forensics/), we see some words in the middle of the image.
+
+![](images/isthisart.PNG)
+
+Flag: `ictf{!NV1$IBL3_BU7_N07_IM@G1N@RY}`
+
+## Fuzzy
+> My friend was rocking out to this music. It didn't seem like real music... He told me that the music was "super special." Can you help me figure it out?
+
+If we listen to the file, do `strings`, and check the metadata, we don't find anything particularly interesting. Open the given .wav file in Audacity and change the view type to Spectrogram to get the flag.
+
+![](images/fuzzy.PNG)
+
+Flag: `ictf{W@V3S_@R3_F1@G$}`
