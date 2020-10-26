@@ -11,13 +11,25 @@ October 2020 Round
 | Whitened 2.0 | Misc | 100 |
 | [AppleBot](#applebot) | Misc | 150 |
 | [Blinking Lights](#blinking-lights) | Crypto | 50 |
-| Optimization [NOT SOLVED] | Programming | 150 |
+| [Optimization](optimization/) | Programming | 150 |
 | Out of Office... | OSINT | 100 |
 | [Is this art?](#is-this-art) | Forensics | 50 | 
 | [Fuzzy](#fuzzy) | Forensics | 100 |
 | [Just Add](justadd/) | Programming | 50 |
+| Flag on discord? | OSINT | 50 |
+| Impossible... Right? | Crypto | 50 |
+| Wow A Fine Day! | Crypto | 50 |
+| Runes | Crypto | 50 |
+| Factors | Programming | 100 |
+| Encoding | Crypto | 100 |
+| More Runes... | Crypto | 75 |
+| [seed12](seed12/) | Programming | 150 |
+| Base... What? | Crypto | 50 |
+| [See The Past](seethepast/) | Rev/OSINT | 100 |
+| Emojis | Crypto | 50 |
 
-little behind on the daily challenges but it's fine
+
+My shorter writeups that don't involve a script are on this main doc. Check out individual problems and files in their respective folders.
 
 
 ## Applebot
@@ -84,6 +96,7 @@ If we play with filters on [Forensically](https://29a.ch/photo-forensics/), we s
 
 Flag: `ictf{!NV1$IBL3_BU7_N07_IM@G1N@RY}`
 
+
 ## Fuzzy
 > My friend was rocking out to this music. It didn't seem like real music... He told me that the music was "super special." Can you help me figure it out?
 
@@ -92,3 +105,15 @@ If we listen to the file, do `strings`, and check the metadata, we don't find an
 ![](images/fuzzy.PNG)
 
 Flag: `ictf{W@V3S_@R3_F1@G$}`
+
+
+## Factors
+> Try to find the smallest positive integer number with 50 factors! Its not that easy... 
+
+ah yes google ~~math is just osint~~
+
+good link: https://rosettacode.org/wiki/Sequence:_smallest_number_with_exactly_n_divisors#J
+
+anyway.
+
+Flag: `ictf{6480}`

@@ -18,7 +18,7 @@ Ranking: 2/42 with 3065 points (33/33 challenges solved).
 | Biblio | OSINT | 75 |
 | [Hashed Potatoes](#hashed-potatoes) | Crypto | 125 |
 | [Quick Maths](quickmaths/) | Programming | 100 |
-| zhiepx | Forensics | 75 |
+| [zhiepx](#zhiepx) | Forensics | 75 |
 | [Infinity Library](#infinity-library) | OSINT | 75 |
 | Steg 1 | Forensics | 75 | 
 | amy | OSINT/Math | 75
@@ -147,6 +147,32 @@ while stillInp:
 Flag: `flag{w0w_qu1ck_m4th5}`
 
 
+## zhiepx
+> ZIP ZIP ZIP FORENSICS
+Note: There is a fake flag present.
+
+Attached is a zip file. If we open the unzipped file in a hex editor, it looks like we were given the text of what's in a hex editor. We can also see a PNG header, so we know what the final format should be. To solve this challenge, we can to remove the first part (addresses) and the last part (conversion of hex to ascii). Alternatively, you could probably just remove everything but the last part.
+
+Here's a python implementation:  
+```
+import binascii
+
+with open('zhiepx', 'r') as f1:
+  lines = f1.readlines()
+
+with open('output.png', 'wb') as f2:
+  for line in lines:
+    line = line[10:-20].replace(" ", "")
+    f2.write(binascii.a2b_hex(line))
+  
+```
+
+It's an image of a QR code, which gives us the flag.
+![](zhiepx/output.png)
+
+Flag: `flag{f0rens1csssssss_n1ce}`
+
+
 ## Infinity Library
 > I lost my flag in an infinite library... Can you find it for me? I think I might have left it in wall 4, in shelf 5, in volume 11... 
 > Hint: I think I left the flag on page 353...
@@ -267,6 +293,7 @@ Flag: `flag{SECURE_RIGHT_WAIT_WHAT_HAVE_YOU_DONE}`
 We're heavily hinted that the flag is a number. Numbers in binary are only 6 bits long, so we can either pad the front of each 6-bit group with two zeros and put it in a decoder or just take substrings in intervals of 6. 
 
 Flag: `flag{293379041573118045942178062455891115683939605429063126250374632854}`  
+
 
 ## Hello World!
 > I​​​​‏​‍​​​​‏‌‎​​​​‎‏‍​​​​‏​‎​​​​‏‏‎​​​​‏‎​​​​​‏‎‍​​​​‏‍‍​​​​‏​‌​​​​‏‍‏​​​​‎‏​​​​​‏‎​​​​​‍​‌​​​​‎‏‏​​​​‏‍‏​​​​‏​‌​​​​‏‎‌​​​​‎‏​​​​​‏​‍​​​​‏‌‎​​​​‍​‍​​​​‏​‎​​​​‎‏​​​​​‏‎​​​​​‏‎‍​​​​‎‏‎​​​​‏‌‏​​​​‌‏‏​​​​‏‎‌​​​​‎‏​​​​​‏‎‌​​​​‏​‏​​​​‌‏‏​​​​‏‎​​​​​‎‏​​​​​‏​‍​​​​‌‏‎​​​​‏‍‏​​​​‎‏​​​​​‎‏‍​​​​‎‏​​​​​‏‎​​​​​‍​‌​​​​‎‏‏​​​​‏‍‏​​​​‍​‌​​​​‏‎‌​​​​‎‏​​​​​‍​‌​​​​‏‏​​​​​‏‎‌​​​​‏‍‏​​​​‍​‍​​​​‎‏​​​​​‎‏‏​​​​‏​‏​​​​‍​‍​​​​‏‌‎​​​​‏‌‎​​​​‍​‌​​​​‏‍​​​​​‏​‎​​​​‍​‌​​​‌​​​ forgot how to program, so I'll just type "Hello World". Much easier than making a program type it for me.
