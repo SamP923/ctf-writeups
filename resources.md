@@ -1,5 +1,5 @@
 # Useful Resources
-This is an archive of resources that I found helpful while solving chals.
+This is an archive of resources that I found helpful while solving chals; still being updated.
 
 ### General
 - [Grep examples](https://phoenixnap.com/kb/grep-command-linux-unix-examples)
@@ -9,11 +9,11 @@ This is an archive of resources that I found helpful while solving chals.
 
 
 ### Binary Exploitation
-- //TODO:
-
+- [Nightmare](https://guyinatuxedo.github.io/)
 
 
 ### Crypto
+- [CryptoHack](https://cryptohack.org/challenges/)
 - [CyberChef](https://gchq.github.io/CyberChef/)
 - [DCode.fr](https://www.dcode.fr/)
 - [Quipqiup: Cryptogram Solver](https://www.quipqiup.com/)

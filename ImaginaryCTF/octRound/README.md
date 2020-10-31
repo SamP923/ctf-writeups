@@ -1,6 +1,8 @@
 # [√-1 + 1] CTF server problems 
 October 2020 Round
 
+Ranking: 1/60 with 2555 points (30/30 challenges solved).
+
 | Challenge               | Type | Points |
 |-------------------------|------|--------|
 | Welcome to Round 3! | Misc | 15 |
@@ -27,7 +29,12 @@ October 2020 Round
 | Base... What? | Crypto | 50 |
 | [See The Past](seethepast/) | Rev/OSINT | 100 |
 | Emojis | Crypto | 50 |
-
+| [The Oracle](theoracle/) | Rev/OSINT | 100 |
+| Calendars | OSINT | 100 |
+| Upercase | Crypto | 50 |
+| Rails | Crypto | 50 |
+| [Flag Checker](flagchecker/) | RE/Crypto | 100 |
+| [Colors](#colors) | Forensics | 100 |
 
 My shorter writeups that don't involve a script are on this main doc. Check out individual problems and files in their respective folders.
 
@@ -117,3 +124,13 @@ good link: https://rosettacode.org/wiki/Sequence:_smallest_number_with_exactly_n
 anyway.
 
 Flag: `ictf{6480}`
+
+
+## Colors
+> I found this cool strip of colors! It looks pretty nice, but they all seem rather dull. It almost seems as if its speaking a message! Maybe you could help me find it?
+
+![](images/colors.png)
+
+Colors can generally be represented using hex codes, which we can then convert into text. I used [this tool](https://htmlcolorcodes.com/) to extract the hex codes, which, when converted to ASCII, gave us the flag.
+
+Flag: `ictf{h3x_c01ors!}`
