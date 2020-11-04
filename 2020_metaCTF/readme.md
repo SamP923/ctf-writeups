@@ -5,6 +5,8 @@ Overall Ranking: 192/1586
 Student Ranking: 123/1017  
 4025 points with 22 challenges solved.  
 
+![](CatBreakdown.PNG)
+
 
 |Challenge|Type|Points|
 |---------|------|--------|
