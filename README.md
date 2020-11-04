@@ -12,5 +12,5 @@ Started: September 2020
 | [[√-1 + 1] November Round](ImaginaryCTF/octRound/) | 3 | in progress |
 | [b01lers bootcamp CTF](2020_b01lersCTF/) | 25 | complete |
 | [MetaCTF](2020_metaCTF/) | 22 | complete |
-| [Newark Academy CTF](2020_NACTF/] | 27 | complete | 
+| [Newark Academy CTF](2020_NACTF/) | 27 | complete | 
 
