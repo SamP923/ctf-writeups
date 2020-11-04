@@ -40,6 +40,7 @@ This is an archive of resources that I found helpful while solving chals; still 
 
 ### OSINT
 - [Find subdomains](https://www.nmmapper.com/sys/tools/subdomainfinder/)
+- [Data Verification Handbook](https://datajournalism.com/read/handbook/verification-3)
 - [OSINT Framework](https://osintframework.com/)
 - Twitter, GitHub, and Imgur are used pretty often
 
@@ -53,3 +54,5 @@ This is an archive of resources that I found helpful while solving chals; still 
 
 ### Note to self to check out 
 - https://github.com/ctfs/
+- https://github.com/JohnHammond/ctf-katana
+- https://babyphd.net/2016/07/malware-analysis-overview-for-beginners/

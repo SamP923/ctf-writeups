@@ -3,21 +3,11 @@ October 30th - November 4th
 
 Ranking: 172/968 with 2751 points (27 challenges solved).  
 
-![](CategoryBreakdown.png)
+![](CategoryBreakdown.png) <!-- .element height="25%" width="25%" -->
 
 
 |Challenge|Category|Value|
 |---------|------|--------|
-|Caesar's Challenge|Cryptography|25|
-|YAMS|Cryptography|100|
-|Oligar's Tricky RSA|Cryptography|175|
-|Gummies|Forensics|50|
-|Meta-morphosis|Forensics|75|
-|Secret Message|Forensics|100|
-|Turnips|Forensics|100|
-|Turnips 2|Forensics|150|
-|Static|Forensics|250|
-|Survey|General Skills|1|
 |Join the Discord|General Skills|10|
 |Intro to Flags|General Skills|10|
 |Basics|General Skills|30|
@@ -29,9 +19,6 @@ Ranking: 172/968 with 2751 points (27 challenges solved).
 |[Zip Madness](#zip-madness)|General Skills|175|
 |[Grep 1](#grep-1)|General Skills|200|
 |[World Trip](#world-trip)|General Skills|300|
-|Generic Flag Checker® 1|Reverse Engineering|75|
-|Inspect|Web|50|
-|Missing Image|Challenge|Category|Value|
 |Caesar's Challenge|Cryptography|25|
 |YAMS|Cryptography|100|
 |Oligar's Tricky RSA|Cryptography|175|
@@ -42,17 +29,6 @@ Ranking: 172/968 with 2751 points (27 challenges solved).
 |Turnips 2|Forensics|150|
 |[Static](#static)|Forensics|250|
 |Survey|General Skills|1|
-|Join the Discord|General Skills|10|
-|Intro to Flags|General Skills|10|
-|Basics|General Skills|30|
-|Hashbrowns|General Skills|50|
-|Grep 0|General Skills|50|
-|Dr. J's Vegetable Factory #1 🥕|General Skills|50|
-|Numbers|General Skills|50|
-|Arithmetic|General Skills|150|
-|Zip Madness|General Skills|175|
-|Grep 1|General Skills|200|
-|World Trip|General Skills|300|
 |Generic Flag Checker® 1|Reverse Engineering|75|
 |Inspect|Web|50|
 |Missing Image|Web|75|
@@ -63,12 +39,13 @@ Ranking: 172/968 with 2751 points (27 challenges solved).
 I'm still very much struggling on pwn/c rev. When I have more time, I'll focus more on learning those categories. Otherwise, I'm proud of the max on Forensics and General Skills (minus the vegetable algos), specifically Static and World Trip.
 
 
+
 # General Skills
-- *Basics*: Base64
-- *Grep 0*: Use grep to search for 'nactf'
-- *Numbers*: Shift each number down by one, convert decimal to ASCII.
-- *Hashbrowns*: MD5 hash, can use [MD5 online](https://www.md5online.org/md5-decrypt.html)
-- *Arithmetic*: Integer overflow.
+- **Basics**: Base64
+- **Grep 0**: Use grep to search for 'nactf'
+- **Numbers**: Shift each number down by one, convert decimal to ASCII.
+- **Hashbrowns**: MD5 hash, can use [MD5 online](https://www.md5online.org/md5-decrypt.html)
+- **Arithmetic**: Integer overflow.
 
 ## Zip Madness
 > Evan is playing Among Us and just saw an imposter vent in front of him! Help him get to the emergency button by following the directions at each level.
@@ -161,22 +138,23 @@ Flag: `nactf{IHOPEYOUENJOYEDGOINGONTHATREALLYLONGGLOBALTOURIBOFAIQFUSETZOROPZNQT
 
 
 # Cryptography
-- *Caesar's Challenge*: Caesar Cipher.
-- *YAMS*: [Vigenere cipher](https://www.boxentriq.com/code-breaking/vigenere-cipher), key = yams.
-- *Oligar's Tricky RSA*: Factor n using Alpertron to find p and q; use factors to calculate totient and d to get plaintext.
+- **Caesar's Challenge**: Caesar Cipher.
+- **YAMS**: [Vigenere cipher](https://www.boxentriq.com/code-breaking/vigenere-cipher), key = yams.
+- **Oligar's Tricky RSA**: Factor n using Alpertron to find p and q; use factors to calculate totient and d to get plaintext.
 
 
 
 
 # Forensics
 
-- *Gummies*: [Cool site](https://stylesuxx.github.io/steganography/)
-- *Meta-morphosis*: Check metadata
-- *Turnips*: I forgot oops
-- *Turnips 2*: Open in hex editor, fix the [magic numbers](https://en.wikipedia.org/wiki/List_of_file_signatures) of the file header to make it into a PNG.
+- **Gummies**: [Cool site](https://stylesuxx.github.io/steganography/)
+- **Meta-morphosis**: Check metadata
+- **Turnips**: I forgot oops
+- **Turnips 2**: Open in hex editor, fix the [magic numbers](https://en.wikipedia.org/wiki/List_of_file_signatures) of the file header to make it into a PNG.
 
 ## Secret Message
-> Monica loves inventing secret languages. So much so that she claims to be the only one to know the message in this recording. What does it say?
+> Monica loves inventing secret languages. So much so that she claims to be the only one to know the message in this recording. What does it say?  
+
 Open in audio viewer, convert longer bands and shorter bands into morse code.
 
 ![](forensics/secretmessage/message.PNG)
@@ -223,8 +201,8 @@ im2.save("solved.png")
 
 
 # Web
-- *Inspect*: Inspect element.
-- *Missing Image*: Check the source code, there's a link to an image.
-- *Forms*: At the very bottom, there's a verify() function that shows a plaintext username (`admin`) and password (`password123`). Ctrl-F for the form that calls the verify function, input to get flag.
-- *Cookie Recipe*: Notice that when you login, a `user` cookie with the value `cookie_lover`, but it disappears when you refresh or logout. Add it back and get the flag.
-- *Login*: SQL injection, `admin' OR 1=1 #` to the login field.
+- **Inspect**: Inspect element.
+- **Missing Image**: Check the source code, there's a link to an image.
+- **Forms**: At the very bottom, there's a verify() function that shows a plaintext username (`admin`) and password (`password123`). Ctrl-F for the form that calls the verify function, input to get flag.
+- **Cookie Recipe**: Notice that when you login, a `user` cookie with the value `cookie_lover`, but it disappears when you refresh or logout. Add it back and get the flag.
+- **Login**: SQL injection, `admin' OR 1=1 #` to the login field.
