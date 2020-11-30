@@ -52,6 +52,11 @@ This is an archive of resources that I found helpful while solving chals; still 
 
 
 
+### Web
+- [SQLi Cheatsheet](https://ctf-wiki.github.io/ctf-wiki/web/sqli/)
+
+
+
 ### Note to self to check out 
 - https://github.com/ctfs/
 - https://github.com/JohnHammond/ctf-katana
